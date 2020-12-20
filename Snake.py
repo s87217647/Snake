@@ -48,8 +48,7 @@ class Snake():
         for p in self.positions:
             r = pygame.Rect((p[0], p[1]), (gridsize,gridsize))
             pygame.draw.rect(surface, self.color, r)
-            
-# Have to sperate controling part from the rest of the snake class
+
     def handle_keys(self):
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -65,6 +64,14 @@ class Snake():
                 elif event.key == pygame.K_RIGHT:
                     self.turn(right)
 
+
+def control(x):
+    x.turn(random.choice([up, down, left, right]))
+    
+# def control(){
+#
+# }
+
 class Food():
     def __init__(self):
         self.position = (0,0)
@@ -77,7 +84,7 @@ class Food():
     def draw(self, surface):
         r = pygame.Rect((self.position[0], self.position[1]), (gridsize, gridsize))
         pygame.draw.rect(surface, self.color, r)
-        #pygame.draw.rect(surface, (93, 216, 228), r, 1)
+        # pygame.draw.rect(surface, (93, 216, 228), r, 1)
 
 def drawGrid(surface):
     for y in range(0, int(grid_height)):
@@ -122,6 +129,7 @@ def main():
     while (True):
         clock.tick(10)
         snake.handle_keys()
+        control(snake)
         drawGrid(surface)
         snake.move()
         if snake.get_head_position() == food.position:
