@@ -9,6 +9,11 @@ class Snake():
         self.direction = random.choice([up, down, left, right])
         self.color = (255, 255, 255)
         self.score = 0
+        self.brian
+        self.fitness
+        self.dead
+        self.movesLeft
+
 
     def get_head_position(self):
         return self.positions[0]
